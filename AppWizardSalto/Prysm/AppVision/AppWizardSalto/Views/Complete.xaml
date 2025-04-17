@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="Prysm.AppVision.AppWizardSalto.Views.Complete" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:local="clr-namespace:Prysm.AppVision.AppWizardSalto.Views" DataContext="{StaticResource Vm}" Title="CompletePage">
+  <Grid Background="#FFD3D3D3">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid Row="0" Background="#FFFFFFFF">
+      <Path Data="M-150.204,626.126 C-152.317,626.126 -154.429,626.126 -156.541,626.126 C-167.642,633.42 -180.629,646.047 -189.668,657.238 C-190.916,658.782 -192.945,662.362 -193.701,662.422 C-194.041,662.448 -198.024,659.719 -198.614,659.297 C-202.818,656.279 -205.779,653.709 -209.257,650.899 C-211.248,652.172 -212.879,653.805 -214.153,655.797 C-206.627,665.074 -200.283,675.534 -193.124,685.18 C-181.491,665.11 -168.473,644.683 -152.796,629.006 C-151.735,627.946 -149.817,626.933 -150.204,626.126" Stretch="Uniform" Fill="#FF000000" Width="48" Height="48" Margin="10,0,0,0" HorizontalAlignment="Left" />
+      <Image Margin="0,4,10,4" HorizontalAlignment="Right" Source="../Images/salto.png" />
+      <TextBlock Margin="80, 0" VerticalAlignment="Center" HorizontalAlignment="Left">
+        <Span FontSize="18">
+          <Bold>Done</Bold>
+        </Span>
+      </TextBlock>
+    </Grid>
+    <TextBlock FontWeight="Bold" Grid.Row="1" Margin="20" Text="{Binding ImportResult}" />
+    <ScrollViewer Grid.Row="2" Margin="40">
+      <TextBlock Text="{Binding ErrorList}" />
+    </ScrollViewer>
+    <Button Grid.Row="1" Height="25" Width="75" Margin="0,0,10,10" Content="Exit" IsDefault="True" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Button_Click" />
+  </Grid>
+</Page>

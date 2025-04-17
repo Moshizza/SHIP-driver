@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="Prysm.AppVision.AppWizardSalto.Views.SystemLogin" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:app="http://prysm.fr/AppVision" DataContext="{StaticResource Vm}" Title="Server" xmlns:views="clr-namespace:Prysm.AppVision.AppWizardSalto.Views;assembly=AppWizardSalto">
+  <Grid Background="#FFD3D3D3">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid Background="#FFFFFFFF">
+      <Path Data="M23.104071,28.527 C23.783672,30.139721 24.661274,31.64304 25.672976,33.045959 L6.1626358,52.557308 C5.3109837,53.410118 5.3123531,54.798935 6.1652355,55.651146 C7.0154877,56.502056 8.4060497,56.502056 9.2576818,55.651146 L28.558481,36.346802 C30.955587,38.615128 33.833193,40.376751 37.025999,41.465466 L37.025999,44.934811 C37.025999,46.033024 36.130097,46.930336 35.031196,46.930336 L29.542884,46.930336 L29.542884,52.418606 C29.542884,53.51762 28.647082,54.414131 27.548079,54.414131 L22.059769,54.414131 L22.059769,59.9025 C22.059768,61.001415 21.162666,61.897926 20.063663,61.897926 L14.472452,61.897926 L13.07935,63.291145 C12.227648,64.143456 3.6833897,64.59446 1.544035,62.457832 C-0.59527969,60.319107 -0.14346504,51.773499 0.70950317,50.920685 M50.746134,6.7629433 C47.162842,6.7629433 44.257851,9.6692162 44.257851,13.24983 C44.257851,16.835785 47.162842,19.741947 50.746134,19.741947 C54.330822,19.741947 57.237015,16.835785 57.237015,13.24983 C57.237015,9.6692162 54.330822,6.7629433 50.746134,6.7629433 M44.510548,0 C55.27342,0 64,8.7238588 64,19.48875 C64,30.251614 55.27342,38.978001 44.510548,38.978001 C33.747477,38.978001 25.020999,30.251614 25.021,19.48875 C25.020999,8.7238588 33.747477,0 44.510548,0" Stretch="Uniform" Fill="#FF000000" Width="48" Height="48" HorizontalAlignment="Left" Margin="10,4,0,4" />
+      <Image Margin="0,4,10,4" HorizontalAlignment="Right" Source="../Images/salto.png" />
+      <TextBlock Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Span FontSize="18">
+          <Bold>Connection to Salto Server</Bold>
+        </Span>
+      </TextBlock>
+    </Grid>
+    <TextBlock Grid.Row="1" Margin="20" VerticalAlignment="Top">Fill the Salto Space connection parameters.</TextBlock>
+    <StackPanel Grid.Row="1" HorizontalAlignment="Left" Margin="40 60" Width="400" xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" common:Panel.Padding="0 4">
+      <DockPanel Margin="14 4">
+        <Label Width="140">Salto Server (host or IP)</Label>
+        <Label>🛈<FrameworkElement.ToolTip><Image Source="/Images/SystemLogin/SaltoAdrs.png" /></FrameworkElement.ToolTip></Label>
+        <TextBox Text="{Binding Path=SystemHost}" />
+      </DockPanel>
+      <DockPanel Margin="14 4">
+        <UIElement.Visibility>
+          <Binding>
+            <Ctor xmlns="https://github.com/icsharpcode/ILSpy">UseHttps</Ctor>
+            <Binding.Converter>
+              <common:ToVisible />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.Visibility>
+        <Label Width="140">Salto Server port</Label>
+        <Label>🛈<FrameworkElement.ToolTip><Image Source="/Images/SystemLogin/SaltoHttpsPort.png" /></FrameworkElement.ToolTip></Label>
+        <TextBox Text="{Binding Path=SystemServerPort}" />
+      </DockPanel>
+      <GroupBox Header="Salto SHIP Server">
+        <UIElement.Visibility>
+          <Binding>
+            <Ctor xmlns="https://github.com/icsharpcode/ILSpy">UseHttps</Ctor>
+            <Binding.Converter>
+              <common:ToCollapsed />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.Visibility>
+        <DockPanel Margin="8 4">
+          <Label Width="140">TCP/IP port</Label>
+          <Label>🛈<FrameworkElement.ToolTip><Image Source="/Images/SystemLogin/ShipServerPort.png" /></FrameworkElement.ToolTip></Label>
+          <TextBox Text="{Binding Path=SystemServerPort}" />
+        </DockPanel>
+      </GroupBox>
+      <GroupBox Header="Salto SHIP Client">
+        <DockPanel Margin="8 4">
+          <Label Width="140">TCP/IP port</Label>
+          <Label>🛈<FrameworkElement.ToolTip><Image Source="/Images/SystemLogin/ShipClientPort.png" /></FrameworkElement.ToolTip></Label>
+          <TextBox Text="{Binding Path=SystemHostPort}" />
+        </DockPanel>
+      </GroupBox>
+      <GroupBox Header="Events stream">
+        <DockPanel Margin="8 4">
+          <Label Width="140">Port number</Label>
+          <Label>🛈<FrameworkElement.ToolTip><Image Source="/Images/SystemLogin/EventStreamPort.png" /></FrameworkElement.ToolTip></Label>
+          <TextBox Text="{Binding Path=SystemEventPort}" />
+        </DockPanel>
+      </GroupBox>
+      <ProgressBar IsIndeterminate="True" Height="12">
+        <UIElement.Visibility>
+          <Binding Path="IsBusy">
+            <Binding.Converter>
+              <common:TrueToVisible />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.Visibility>
+      </ProgressBar>
+    </StackPanel>
+    <WrapPanel VerticalAlignment="Bottom" FlowDirection="RightToLeft" Grid.Row="1">
+      <Button Height="23" Width="75" Margin="20,10,10,10" Content="Next" IsDefault="True" Command="{Binding Path=LoginToSystemCmd}" CommandParameter="{Binding ElementName=PasswordField}" />
+      <Button Height="23" Width="75" Margin="10" Content="Previous" Command="{Binding Path=GoBackCmd}">
+        <UIElement.Visibility>
+          <Binding Path="IsSaltoOEM">
+            <Binding.Converter>
+              <TrueToVisible xmlns="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.Visibility>
+      </Button>
+    </WrapPanel>
+  </Grid>
+</Page>

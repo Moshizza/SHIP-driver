@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>AppWizardSalto</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>True</UseWPF>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <RootNamespace />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="images\logo.png" />
+    <None Remove="images\salto.png" />
+    <None Remove="images\systemlogin\saltoadrs.png" />
+    <None Remove="images\systemlogin\eventstreamport.png" />
+    <None Remove="images\systemlogin\shipclientport.png" />
+    <None Remove="images\systemlogin\shipserverport.png" />
+    <None Remove="images\ico.ico" />
+    <None Remove="images\systemlogin\saltohttpsport.png" />
+    <EmbeddedResource Include="images\logo.png" LogicalName="images/logo.png" />
+    <EmbeddedResource Include="images\salto.png" LogicalName="images/salto.png" />
+    <EmbeddedResource Include="images\systemlogin\saltoadrs.png" LogicalName="images/systemlogin/saltoadrs.png" />
+    <EmbeddedResource Include="images\systemlogin\eventstreamport.png" LogicalName="images/systemlogin/eventstreamport.png" />
+    <EmbeddedResource Include="images\systemlogin\shipclientport.png" LogicalName="images/systemlogin/shipclientport.png" />
+    <EmbeddedResource Include="images\systemlogin\shipserverport.png" LogicalName="images/systemlogin/shipserverport.png" />
+    <EmbeddedResource Include="images\ico.ico" LogicalName="images/ico.ico" />
+    <EmbeddedResource Include="images\systemlogin\saltohttpsport.png" LogicalName="images/systemlogin/saltohttpsport.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="WindowsBase" />
+    <Reference Include="Telerik.Windows.Controls" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="Telerik.Windows.Controls.GridView" />
+    <Reference Include="Telerik.Windows.Data" />
+    <Reference Include="appCommon" />
+    <Reference Include="appData" />
+    <Reference Include="ShipProtocol">
+      <HintPath>..\ShipProtocol.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="appSDK" />
+  </ItemGroup>
+</Project>

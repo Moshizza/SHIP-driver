@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="Prysm.AppVision.AppWizardSalto.Views.Details" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:t="http://schemas.telerik.com/2008/xaml/presentation" xmlns:app="http://prysm.fr/AppVision" xmlns:local="clr-namespace:Prysm.AppVision.AppWizardSalto.Views" Title="Details" DataContext="{StaticResource Vm}">
+  <Grid Background="#FFD3D3D3">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <Grid Row="0" Background="#FFFFFFFF">
+      <Path Data="M53.257849,22.219002 C50.359266,22.219002 48.008997,24.570501 48.008997,27.469 C48.008997,30.367401 50.359266,32.719002 53.257849,32.719002 C56.15893,32.719002 58.507998,30.367401 58.507998,27.469 C58.507998,24.570501 56.15893,22.219002 53.257849,22.219002 M48.862951,18.801001 C49.445639,18.801001 50.012178,18.870207 50.554796,19.000841 L50.671106,19.03125 L50.664,19.014 L54.928846,20.334774 L55.088133,20.373646 C58.247904,21.186707 60.582998,24.05518 60.582998,27.468701 C60.582998,31.513056 57.302977,34.792999 53.257452,34.792999 C52.297712,34.792999 51.38101,34.608296 50.540964,34.272499 L50.351336,34.192112 L46.773333,32.898007 L46.750212,32.891232 C46.527792,32.823101 46.309954,32.744499 46.097273,32.655995 L46.060701,32.640255 L45.980001,32.611069 L45.984163,32.607319 L45.938734,32.587769 C43.417887,31.466736 41.660002,28.940613 41.660002,26.002751 C41.660002,22.026224 44.885134,18.801001 48.862951,18.801001 M37.997526,14.651 C36.110968,14.651 34.580999,16.180914 34.580999,18.06913 L34.580999,33.938969 C34.580999,35.825588 36.110968,37.356999 37.997526,37.356999 L59.484072,37.356999 C61.372129,37.356999 62.901999,35.825588 62.901999,33.938969 L62.901999,18.06913 C62.901999,16.180914 61.372129,14.651 59.484072,14.651 M7.1622665,4.4764192E-12 L23.176785,4.4764192E-12 C23.407736,-3.7598626E-07 23.633234,0.023680965 23.851032,0.068776127 L24.162037,0.1496849 L24.448009,4.4764192E-12 L60.338999,11.59893 L60.261709,11.683684 L60.676512,11.768858 C62.602335,12.247219 63.999998,13.681835 63.999998,15.377673 L63.999998,35.895825 C63.999998,37.98431 61.882826,39.676998 59.26956,39.676998 L36.626642,39.676998 C35.156622,39.676998 33.843254,39.141422 32.975428,38.301087 L32.940279,38.263523 L25.881001,34.793518 L25.881001,41.09359 L0,57.819 L0,48.90744 L17.702826,37.675568 L17.702826,30.773522 L6.0130002,25.027363 L6.0366189,24.947395 L5.8599517,24.881977 C4.6589947,24.36808 3.816,23.165007 3.8159999,21.762753 L3.8159999,3.3854455 C3.816,1.5156053 5.3146572,-3.7598626E-07 7.1622665,4.4764192E-12" Stretch="Uniform" Fill="#FF000000" Width="48" Height="48" Margin="10,4,0,4" HorizontalAlignment="Left" />
+      <Image Margin="0,4,10,4" HorizontalAlignment="Right" Source="../Images/salto.png" />
+      <TextBlock Margin="80,0,0,0" VerticalAlignment="Center">
+        <Span FontSize="18">
+          <Bold>Items selection</Bold>
+        </Span>
+        <LineBreak />
+        <Span FontSize="14">Select items you wish to import</Span>
+      </TextBlock>
+    </Grid>
+    <Grid Margin="10" Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="*" />
+        <RowDefinition Height="Auto" />
+        <RowDefinition Height="Auto" />
+      </Grid.RowDefinitions>
+      <TextBlock Grid.Row="0" Text="This will add or update the selected items. No items will be deleted." HorizontalAlignment="Right" />
+      <TextBlock Grid.Row="1" HorizontalAlignment="Right">
+        <Run Text="{Binding SelectedEntities.Count, Mode=OneWay}" />/<Run Text="{Binding Entities.Count, Mode=OneWay}" /><Run Text=" item(s) selected for import." /></TextBlock>
+      <controls:RadGridView xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView" controls:RadGridView.Name="List" Grid.Row="2" GridViewDataControl.ShowGroupPanel="False" FrameworkElement.Margin="5" GridViewDataControl.EnableRowVirtualization="False" GridViewDataControl.AutoGenerateColumns="False" GridViewDataControl.CanUserInsertRows="False" GridViewDataControl.CanUserDeleteRows="False" xmlns:gridview="clr-namespace:Telerik.Windows.Controls.GridView;assembly=Telerik.Windows.Controls.GridView" gridview:GridViewDataControl.RowIndicatorVisibility="Collapsed" gridview:GridViewDataControl.FrozenColumnsSplitterVisibility="Collapsed" gridview:GridViewDataControl.SelectionMode="Extended" p11:DataControl.ItemsSource="{Binding Path=Entities}" gridview:GridViewDataControl.IsBusy="{Binding Path=IsBusy}" Loaded="List_Loaded" SelectionChanged="List_SelectionChanged" xmlns:p11="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Data">
+        <FrameworkElement.Resources>
+          <ResourceDictionary>
+            <Style x:Key="{x:Type gridview:GridViewRow}" TargetType="{x:Type gridview:GridViewRow}" BasedOn="{StaticResource GridViewRowStyle}">
+              <Setter Property="UIElement.IsEnabled" Value="{Binding IsEnabled}" />
+              <Setter xmlns:controls1="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Data" Property="controls1:RadRowItem.IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+            </Style>
+          </ResourceDictionary>
+        </FrameworkElement.Resources>
+        <gridview:GridViewDataControl.Columns>
+          <controls:GridViewSelectColumn />
+          <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Name" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Name}" />
+          <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Description" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=Description}" />
+          <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="Type" GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=TypeDesc}" />
+          <controls:GridViewDataColumn controls:GridViewBoundColumnBase.Header="ExtId" GridViewColumn.IsReadOnly="True" controls:GridViewBoundColumnBase.DataMemberBinding="{Binding Path=ExtId}" />
+        </gridview:GridViewDataControl.Columns>
+      </controls:RadGridView>
+    </Grid>
+    <CheckBox Name="chkUpdateExisting" Grid.Row="3" Margin="20 0" IsChecked="{Binding Path=UpdateExistingRows}">
+      <UIElement.Visibility>
+        <Binding Path="EntitiesInAppVision.Count">
+          <Binding.Converter>
+            <common:ToVisible xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+          </Binding.Converter>
+        </Binding>
+      </UIElement.Visibility>Update existing items.</CheckBox>
+    <WrapPanel Grid.Row="4" FlowDirection="RightToLeft" VerticalAlignment="Bottom">
+      <Button Height="23" Width="75" Margin="20,10,10,10" Content="Next" IsDefault="True" Command="{Binding DetailsCmd}">
+        <UIElement.IsEnabled>
+          <Binding Path="IsBusy">
+            <Binding.Converter>
+              <common:BooleanInverter xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.IsEnabled>
+      </Button>
+      <Button Height="23" Width="75" Margin="10" Content="Previous" IsCancel="True" Command="{Binding Path=GoBackCmd}">
+        <UIElement.IsEnabled>
+          <Binding Path="IsBusy">
+            <Binding.Converter>
+              <BooleanInverter xmlns="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.IsEnabled>
+      </Button>
+    </WrapPanel>
+  </Grid>
+</Page>

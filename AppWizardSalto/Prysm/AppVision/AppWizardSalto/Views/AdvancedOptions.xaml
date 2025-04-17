@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="Prysm.AppVision.AppWizardSalto.Views.AdvancedOptions" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:t="http://schemas.telerik.com/2008/xaml/presentation" xmlns:app="http://prysm.fr/AppVision" xmlns:salto="clr-namespace:Prysm.AppVision.AppWizardSalto" DataContext="{StaticResource Vm}" Title="Server" xmlns:views="clr-namespace:Prysm.AppVision.AppWizardSalto.Views">
+  <Grid Background="#FFD3D3D3">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80" />
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+    <Grid Background="#FFFFFFFF">
+      <Path Data="M23.104071,28.527 C23.783672,30.139721 24.661274,31.64304 25.672976,33.045959 L6.1626358,52.557308 C5.3109837,53.410118 5.3123531,54.798935 6.1652355,55.651146 C7.0154877,56.502056 8.4060497,56.502056 9.2576818,55.651146 L28.558481,36.346802 C30.955587,38.615128 33.833193,40.376751 37.025999,41.465466 L37.025999,44.934811 C37.025999,46.033024 36.130097,46.930336 35.031196,46.930336 L29.542884,46.930336 L29.542884,52.418606 C29.542884,53.51762 28.647082,54.414131 27.548079,54.414131 L22.059769,54.414131 L22.059769,59.9025 C22.059768,61.001415 21.162666,61.897926 20.063663,61.897926 L14.472452,61.897926 L13.07935,63.291145 C12.227648,64.143456 3.6833897,64.59446 1.544035,62.457832 C-0.59527969,60.319107 -0.14346504,51.773499 0.70950317,50.920685 M50.746134,6.7629433 C47.162842,6.7629433 44.257851,9.6692162 44.257851,13.24983 C44.257851,16.835785 47.162842,19.741947 50.746134,19.741947 C54.330822,19.741947 57.237015,16.835785 57.237015,13.24983 C57.237015,9.6692162 54.330822,6.7629433 50.746134,6.7629433 M44.510548,0 C55.27342,0 64,8.7238588 64,19.48875 C64,30.251614 55.27342,38.978001 44.510548,38.978001 C33.747477,38.978001 25.020999,30.251614 25.021,19.48875 C25.020999,8.7238588 33.747477,0 44.510548,0" Stretch="Uniform" Fill="#FF000000" Width="48" Height="48" HorizontalAlignment="Left" Margin="10,4,0,4" />
+      <Image Margin="0,4,10,4" HorizontalAlignment="Right" Source="../Images/salto.png" />
+      <TextBlock Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Span FontSize="18">
+          <Bold>Connection to Salto server</Bold>
+        </Span>
+      </TextBlock>
+    </Grid>
+    <TextBlock Grid.Row="1" Margin="20" VerticalAlignment="Top">Select Salto driver's advanced features.</TextBlock>
+    <StackPanel Grid.Row="2" Margin="40 0" xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" common:Panel.Padding="8">
+      <CheckBox Name="chkImportRelays" Content="Import Alarm inputs and outputs" IsChecked="{Binding ImportRelays}" />
+      <CheckBox Name="chkUseGenericEvent" Content="Create event variable" IsChecked="{Binding UseGenericEvent}" />
+      <CheckBox Name="chkUseHttps" Content="Use Https" IsChecked="{Binding UseHttps}" />
+      <StackPanel Margin="20 8" HorizontalAlignment="Left" Width="250">
+        <UIElement.Visibility>
+          <Binding Path="UseHttps">
+            <Binding.Converter>
+              <common:ToVisible />
+            </Binding.Converter>
+          </Binding>
+        </UIElement.Visibility>
+        <Label>Authentication</Label>
+        <ComboBox SelectedItem="{Binding HttpsMode}">
+          <salto:HttpsMode>None</salto:HttpsMode>
+          <salto:HttpsMode>Basic</salto:HttpsMode>
+          <salto:HttpsMode>Custom</salto:HttpsMode>
+        </ComboBox>
+        <StackPanel>
+          <UIElement.Visibility>
+            <Binding Path="HttpsMode">
+              <Binding.Converter>
+                <common:EqualsToVisible EqualsToTrue.Value="{x:Static salto:HttpsMode.Custom}" />
+              </Binding.Converter>
+            </Binding>
+          </UIElement.Visibility>
+          <Label>Https Custom Key</Label>
+          <TextBox ToolTip="Https Ship Key" Text="{Binding HttpsCustomKey}" />
+        </StackPanel>
+        <StackPanel>
+          <UIElement.Visibility>
+            <Binding Path="HttpsMode">
+              <Binding.Converter>
+                <common:EqualsToVisible EqualsToTrue.Value="{x:Static salto:HttpsMode.Basic}" />
+              </Binding.Converter>
+            </Binding>
+          </UIElement.Visibility>
+          <Label>Https Basic Username</Label>
+          <TextBox ToolTip="Username" Text="{Binding HttpsUsername}" />
+          <Label>Https Basic Password</Label>
+          <controls:RadPasswordBox xmlns:controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls" controls:RadPasswordBox.Name="pwdBox" FrameworkElement.ToolTip="Password" TextChanged="RadPasswordBox_TextChanged" />
+        </StackPanel>
+      </StackPanel>
+    </StackPanel>
+    <WrapPanel FlowDirection="RightToLeft" Grid.Row="3">
+      <Button Height="23" Width="75" Margin="20,10,10,10" Content="Next" IsDefault="True" Command="{Binding Path=FeaturesCmd}" />
+    </WrapPanel>
+  </Grid>
+</Page>

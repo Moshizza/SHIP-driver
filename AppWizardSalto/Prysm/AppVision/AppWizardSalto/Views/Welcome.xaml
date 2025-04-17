@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Page x:Class="Prysm.AppVision.AppWizardSalto.Views.Welcome" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:app="http://prysm.fr/AppVision" DataContext="{StaticResource Vm}" Title="Welcome" Background="#FFD3D3D3" xmlns:views="clr-namespace:Prysm.AppVision.AppWizardSalto.Views;assembly=AppWizardSalto">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="80" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="auto" />
+    </Grid.RowDefinitions>
+    <DockPanel Grid.Row="0" Background="#FFFFFFFF">
+      <Image Margin="0,4,10,4" DockPanel.Dock="Right" Source="../Images/salto.png" />
+      <TextBlock Margin="10" VerticalAlignment="Center">
+        <Span FontSize="18">
+          <Bold>
+            <Run Text="Wizard" />
+          </Bold>
+        </Span>
+        <LineBreak />
+        <Span FontSize="14">
+          <Run Text="for Salto Space" />
+        </Span>
+      </TextBlock>
+    </DockPanel>
+    <TextBlock Grid.Row="1" Margin="20">This will add Salto Space to your installation.</TextBlock>
+    <Button Grid.Row="2" Height="25" Width="75" HorizontalAlignment="Right" Margin="10" Content="Next" IsDefault="True" Command="{Binding Path=GoToConnectCmd}">
+      <UIElement.IsEnabled>
+        <Binding Path="IsBusy">
+          <Binding.Converter>
+            <common:BooleanInverter xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+          </Binding.Converter>
+        </Binding>
+      </UIElement.IsEnabled>
+    </Button>
+  </Grid>
+</Page>
