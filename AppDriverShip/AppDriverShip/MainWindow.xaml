@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Window x:Class="AppDriverShip.MainWindow" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:app="http://prysm.fr/AppVision" Height="300" Width="600" xmlns:appdrivership="clr-namespace:AppDriverShip;assembly=AppDriverShip" Closed="Window_Closed">
+  <UIElement.CommandBindings>
+    <CommandBinding Command="Copy" Executed="Copy_Executed" />
+    <CommandBinding Command="Save" Executed="Save_Executed" />
+    <CommandBinding Command="Delete" Executed="Clear_Executed" />
+  </UIElement.CommandBindings>
+  <FrameworkElement.Resources>
+    <ResourceDictionary>
+      <Path x:Key="delete" Fill="#99000000" Height="14" Stretch="Uniform" Data="M2.293,29.87 L29.988,29.87 C30.573,29.87 31.052,30.35 31.052,30.934 C31.052,31.522 30.573,32 29.988,32 L2.293,32 C1.708,32 1.229,31.522 1.228,30.933 C1.228,30.35 1.707,29.869 2.292,29.869 M9.885,11.558 L2.126,19.368 L7.063,24.429 C7.492,24.862 8.588,25.61 9.194,25.61 L12.466,25.61 C13.073,25.61 13.934,24.862 14.364,24.429 L18.478,20.153 M19.202,0 C19.747,0 20.292,0.243 20.707,0.658 L29.412,9.398 C30.24,10.225 30.24,11.653 29.412,12.483 L16.103,25.936 C15.274,26.766 13.64,27.739 12.466,27.739 L9.194,27.739 C8.024,27.74 6.388,26.767 5.558,25.936 L0.622,20.708 C-0.207,19.88 -0.207,18.523 0.622,17.698 L17.697,0.621 C18.109,0.206 18.657,0 19.203,0" />
+      <Path x:Key="scroll" Fill="#99000000" Height="14" Stretch="Uniform" Data="M12.36,11.13 L15.19,11.13 L15.19,21.2 L15.45,20.94 L20.4,16 L20.402,20.290039 L16.042,24.64801 L16.005997,24.684998 L16.024002,24.705017 L13.879997,26.848999 L11.734001,24.705017 L7.37,20.34 L7.37,16.05 L12.32,21 L12.36,21.04 M11.07,2.69 L10.89,8.58 C10.89,8.58 10.66,12.47 6.37,12 L2.69,11.9 L2.69,28.62 C2.69,28.99 3,29.3 3.37,29.3 L22.26,29.3 C22.63,29.3 22.93,28.99 22.93,28.62 L22.93,3.37 C22.93,3 22.63,2.69 22.26,2.69 M10.9,0 L22.264999,0 C24.128998,0 25.639999,1.51 25.63,3.37 L25.63,28.62 C25.63,30.48 24.12,32 22.264999,32 L3.37,32 C1.51,32 0,30.48999 0,28.627014 L0,11.502014 L1.33,10.09 L1.33,10.05 L8.33,2.69 L8.31,2.69 L6.44,4.67 L8.4,2.59 L8.43,2.59 L8.49,2.53 L8.5,2.53" />
+      <Path x:Key="save" Fill="#99000000" Height="14" Stretch="Uniform" Data="M5.399,24.699 L5.399,27.899 L26.199,27.899 L26.199,24.699 M8.299,0 L12.299,0 L12.299,8.1 L8.299,8.1 M0,0 L5.299,0 L5.299,9.799 L26.199,9.799 L26.199,0 L31.7,0 L31.7,32 L0,32" />
+      <Path x:Key="download" Fill="#99000000" Height="14" Stretch="Uniform" Data="M0,20.299993 L2.7000122,20.299993 L2.7000122,26.799994 L29.399994,26.799994 L29.399994,20.299993 L32,20.299993 L32,29.400001 L0,29.400001 M14.899994,0 L17.100006,0 L17.100006,14.799992 L21.200012,10.700015 L24.200012,10.700015 L24.299988,10.799991 L16,19.000005 L14.399994,17.399999 L7.7000122,10.700015 L7.7999878,10.600009 L10.799988,10.600009 L14.899994,14.700016" />
+      <Path x:Key="refresh" Fill="#99000000" Height="14" Stretch="Uniform" Data="M17.078003,0 C20.645004,0 23.943001,1.038002 26.683006,2.7930031 L29.226006,0 L30.790001,8.1049995 L21.998001,7.9370003 L24.605995,5.0730019 C22.433998,3.7580032 19.853004,2.9820023 17.078003,2.9820023 C9.4169998,2.9820023 3.1829987,8.8220024 3.1829987,15.999001 C3.1829987,23.177002 9.4169998,29.017998 17.078003,29.017998 C21.121002,29.017998 24.752007,27.383003 27.293007,24.794998 L29.370995,27.089005 C26.265007,30.112999 21.910004,32 17.078003,32 C7.6460037,32 0,24.835999 0,15.999001 C0,7.1640015 7.6460037,0 17.078003,0" />
+    </ResourceDictionary>
+  </FrameworkElement.Resources>
+  <DockPanel>
+    <ToolBar DockPanel.Dock="Top" ToolBarTray.IsLocked="True" Background="{x:Null}" Loaded="ToolBar_Loaded">
+      <Button Command="Delete" Content="{StaticResource delete}">
+        <FrameworkElement.ToolTip>
+          <common:RTExtension xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon">
+            <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Clear</Ctor>
+          </common:RTExtension>
+        </FrameworkElement.ToolTip>
+      </Button>
+      <ToggleButton Content="{StaticResource scroll}" IsChecked="{Binding ScrollLock}">
+        <FrameworkElement.ToolTip>
+          <RTExtension xmlns="clr-namespace:Prysm.AppVision.Common;assembly=appCommon">
+            <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Scroll_lock</Ctor>
+          </RTExtension>
+        </FrameworkElement.ToolTip>
+      </ToggleButton>
+      <Button Command="Save" Content="{StaticResource save}">
+        <FrameworkElement.ToolTip>
+          <RTExtension xmlns="clr-namespace:Prysm.AppVision.Common;assembly=appCommon">
+            <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Save</Ctor>
+          </RTExtension>
+        </FrameworkElement.ToolTip>
+      </Button>
+      <Button Command="NavigationCommands.Refresh" ToolTip="Upload to devices" Content="{StaticResource download}" />
+      <Button Command="CorrectionList" ToolTip="Refresh" Content="{StaticResource refresh}" />
+      <Button Click="Tools_Click">
+        <StackPanel Orientation="Horizontal">
+          <Path Fill="#99000000" Height="14" Stretch="Uniform" Data="M4.96,25.44 C4.56,25.44 4.06,25.64 3.76,25.93 C3.06,26.63 3.06,27.63 3.76,28.33 C4.46,29.03 5.46,29.03 6.16,28.33 C6.85,27.63 6.85,26.63 6.16,25.93 C5.76,25.64 5.36,25.44 4.96,25.44 M18.43,18.45 L22.42,22.44 L24.81,22.94 L29.1,29.43 L27.5,31.02 L21.02,26.73 L20.52,24.34 L16.53,20.35 M8.15,18.35 L13.64,23.84 C11.04,26.63 8.95,28.93 7.95,29.93 C6.35,31.52 3.66,31.62 2.07,29.93 C0.47,28.33 0.47,25.64 2.07,24.04 M2.96,6.78 C2.76,6.78 2.56,6.88 2.46,6.98 C2.16,7.28 2.16,7.78 2.46,8.08 L11.74,17.35 C12.04,17.65 12.54,17.65 12.84,17.35 C13.14,17.06 13.14,16.56 12.84,16.26 L3.56,6.98 C3.36,6.88 3.16,6.78 2.96,6.78 M5.26,4.48 C5.06,4.48 4.86,4.58 4.76,4.68 C4.36,4.98 4.36,5.48 4.76,5.88 L14.04,15.16 C14.34,15.46 14.84,15.46 15.13,15.16 C15.43,14.86 15.43,14.36 15.13,14.06 L5.86,4.68 C5.66,4.58 5.46,4.48 5.26,4.48 M4.36,2.39 C5.46,2.39 6.55,2.79 7.35,3.59 L19.32,15.46 L13.34,21.45 L1.27,9.67 C-0.42,7.98 -0.42,5.28 1.27,3.69 C2.16,2.79 3.26,2.39 4.36,2.39 M24.21,0 C25.31501,-8.59E-08 26.312996,0.2 27.21,0.59 L23.02,4.78 C22.22,5.58 22.22,6.78 23.02,7.48 L24.61,9.07 C25.41,9.87 26.61,9.87 27.31,9.07 L31.5,4.98 C31.79,5.88 32,6.78 32,7.78 C32,12.07 28.5,15.56 24.21,15.56 C19.92,15.56 16.43,12.07 16.43,7.78 C16.43,3.49 19.92,-8.59E-08 24.217995,0" />
+          <TextBlock Text="▾" />
+        </StackPanel>
+      </Button>
+      <Popup Name="toolsPopup" StaysOpen="False">
+        <Border Width="300" Height="100" BorderThickness="1" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
+          <Grid xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" common:Panel.Columns="2" common:Panel.Padding="8 12 12 0">
+            <Label>
+              <ContentControl.Content>
+                <common:RTExtension>
+                  <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Log.level</Ctor>
+                </common:RTExtension>
+              </ContentControl.Content>
+            </Label>
+            <ComboBox Name="level" SelectedItem="{Binding LogLevel}" />
+            <Label Content="History depth" />
+            <TextBox Text="{Binding MaxCount}" />
+          </Grid>
+        </Border>
+      </Popup>
+      <Separator />
+      <Grid>
+        <TextBox Name="filter" Width="150" Style="{StaticResource {x:Static ToolBar.TextBoxStyleKey}}" TextChanged="Filter_Changed" />
+        <Label Foreground="#FF808080" IsHitTestVisible="False">
+          <ContentControl.Content>
+            <RTExtension xmlns="clr-namespace:Prysm.AppVision.Common;assembly=appCommon">
+              <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Find</Ctor>
+            </RTExtension>
+          </ContentControl.Content>
+          <UIElement.Visibility>
+            <Binding ElementName="filter">
+              <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Text</Ctor>
+              <Binding.Converter>
+                <common:EmptyToVisible xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+              </Binding.Converter>
+            </Binding>
+          </UIElement.Visibility>
+        </Label>
+        <Button Content="x" HorizontalAlignment="Right" Margin="1" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Click="ClearFilter_Click">
+          <UIElement.Visibility>
+            <Binding ElementName="filter">
+              <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Text</Ctor>
+              <Binding.Converter>
+                <common:EmptyToCollapsed xmlns:common="clr-namespace:Prysm.AppVision.Common;assembly=appCommon" />
+              </Binding.Converter>
+            </Binding>
+          </UIElement.Visibility>
+        </Button>
+      </Grid>
+    </ToolBar>
+    <StatusBar DockPanel.Dock="Bottom">
+      <TextBlock Name="statusInfo" />
+    </StatusBar>
+    <ListBox Name="logs" SelectionMode="Extended" ItemsSource="{Binding Items}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Name="line" Orientation="Horizontal">
+            <TextBlock Foreground="#FF808080" FontSize="9" Text="{Binding Date, StringFormat={}{0:HH:mm:ss.f}}" />
+            <TextBlock Name="lvl" FontSize="9" Margin="4 0" Width="32" Text="{Binding Level}" />
+            <TextBlock Text="{Binding Message}" />
+          </StackPanel>
+          <DataTemplate.Triggers>
+            <DataTrigger Value="Error" Binding="{Binding Level}">
+              <Setter TargetName="lvl" Property="TextBlock.Background" Value="#40ff0000" />
+            </DataTrigger>
+            <DataTrigger Value="Warning" Binding="{Binding Level}">
+              <Setter TargetName="lvl" Property="TextBlock.Foreground" Value="#FFFFA500" />
+            </DataTrigger>
+            <DataTrigger Value="Debug" Binding="{Binding Level}">
+              <Setter TargetName="lvl" Property="TextBlock.Foreground" Value="#FF808080" />
+            </DataTrigger>
+          </DataTemplate.Triggers>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+      <FrameworkElement.ContextMenu>
+        <ContextMenu>
+          <MenuItem Command="Delete" Icon="{StaticResource delete}" />
+          <MenuItem IsCheckable="True" IsChecked="{Binding ScrollLock}">
+            <HeaderedItemsControl.Header>
+              <RTExtension xmlns="clr-namespace:Prysm.AppVision.Common;assembly=appCommon">
+                <Ctor xmlns="https://github.com/icsharpcode/ILSpy">Scroll_lock</Ctor>
+              </RTExtension>
+            </HeaderedItemsControl.Header>
+          </MenuItem>
+          <MenuItem Command="Copy" />
+          <MenuItem Command="Save" Icon="{StaticResource save}" />
+        </ContextMenu>
+      </FrameworkElement.ContextMenu>
+    </ListBox>
+  </DockPanel>
+</Window>

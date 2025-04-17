@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <AssemblyName>AppDriverShip</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>WinExe</OutputType>
+    <UseWPF>True</UseWPF>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="ShipProtocol">
+      <HintPath>..\ShipProtocol.dll</HintPath>
+    </Reference>
+    <Reference Include="appData" />
+    <Reference Include="Newtonsoft.Json" />
+    <Reference Include="appSDK" />
+    <Reference Include="appCommon" />
+    <Reference Include="AppControl.Sdk" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="Microsoft.Data.Services.Client" />
+    <Reference Include="System.Core" />
+    <Reference Include="Microsoft.Data.OData" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+</Project>
